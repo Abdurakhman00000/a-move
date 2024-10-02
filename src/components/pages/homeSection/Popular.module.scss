@@ -1,0 +1,49 @@
+.Popular {
+    .content {
+        margin-top: 30px;
+        .h2 {
+            font-size: 24px;
+            font-weight: 400;
+        }
+        .main_popular_list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 0;
+
+            .popularCard {
+                cursor: pointer;
+                img {
+                    width: 216px;
+                    height: 324px;
+                    border-radius: 14px;
+                    object-fit: cover;
+                }
+
+                h3 {
+                    font-size: 20px;
+                    font-weight: 500;
+                    margin-top: 20px;
+                }
+
+                p {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: rgba(255, 255, 255, 0.526);
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 900px) {
+    .Popular {
+      .content {
+        .main_popular_list {
+          overflow-x: auto;
+          gap: 30px;
+        }
+      }
+    }
+  }
