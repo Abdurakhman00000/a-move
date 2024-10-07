@@ -1,0 +1,18 @@
+.DisTVDetails {
+    margin: 100px 0;
+    .content {
+        margin-top: 150px;
+        display: flex;
+        align-items: center;
+
+        .disTVimg {
+            img {
+                width: 340px;
+                height: 520px;
+                object-fit: cover;
+                border-radius: 15px;
+            }
+        }
+        .disTVtext {}
+    }
+}

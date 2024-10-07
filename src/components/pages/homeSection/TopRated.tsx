@@ -5,6 +5,14 @@ import scss from "./TopRated.module.scss";
 import { useGetTopRatedQuery } from "@/redux/api/topRated";
 import Link from "next/link";
 
+interface TopRated {
+  id: number;
+  title: string;
+  backdrop_path: string;
+  poster_path: string;
+  release_date: string;
+}
+
 const TopRated = () => {
   const { data } = useGetTopRatedQuery();
 
@@ -30,7 +38,7 @@ const TopRated = () => {
         <div className={scss.content}>
           <h2>Top Rated</h2>
           <div className={scss.main_topRated_list}>
-            {data?.results.slice(0, 5).map((item) => (
+            {data?.results.map((item: TopRated) => (
               <div key={item.id} className={scss.topRatedCard}>
                 <Link href={`/topRated/${item.id}`}>
                   <img

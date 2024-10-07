@@ -23,6 +23,6 @@ export const api = createApi({
     baseQuery: baseQueryExtended,
     refetchOnFocus: true,
     refetchOnReconnect: true,
-    tagTypes: ["upcoming","trending", "search", "popular", "topRated", "discoverMovie", "discoverTV"],
+    tagTypes: ["upcoming","trending", "search", "popular", "topRated", "discoverMovie", "discoverTV", "credits", "videos", "similar", "movieDetails", "tvDetails", "searchDetails"],
     endpoints: () => ({}),
 })

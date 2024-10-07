@@ -5,6 +5,7 @@ import scss from "./SearchResults.module.scss";
 import { useSearchKeyWordsQuery } from "@/redux/api/search";
 import Header from "../layout/header/Header";
 import Footer from "../layout/footer/Footer";
+import Link from "next/link";
 
 const SearchResults = () => {
   const params = useParams();
@@ -30,55 +31,89 @@ const SearchResults = () => {
     });
   };
 
-
   return (
-    <section className={scss.SearchResults}> 
-        <Header/>
+    <section className={scss.SearchResults}>
+      <Header />
       <div className="container">
         <h2>Search Results:</h2>
         <div className={scss.results}>
           {data?.results?.length > 0 ? (
             data.results.map((item: any) => (
               <div key={item.id} className={scss.result_card}>
-                {item.media_type === "movie" && (
-                  item.poster_path ? (
-                    <img
-                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    alt={item.title}
-                    className={scss.image}
-                  />
+                {item.media_type === "movie" &&
+                  (item.poster_path ? (
+                    <Link
+                      key={item.id}
+                      href={`/search/${item.media_type}/${item.id}`}
+                    >
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                        alt={item.title}
+                        className={scss.image}
+                      />
+                    </Link>
                   ) : (
-                    <div className={scss.non_img}> <img src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png" alt="" /> </div>
-                  )
-                )}
-                {item.media_type === "tv" && (
-                  item.poster_path ? (
-                    <img
-                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    alt={item.title}
-                    className={scss.image}
-                  />
+                    <div className={scss.non_img}>
+                      {" "}
+                      <img
+                        src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
+                        alt=""
+                      />{" "}
+                    </div>
+                  ))}
+                {item.media_type === "tv" &&
+                  (item.poster_path ? (
+                    <Link
+                      key={item.id}
+                      href={`/search/${item.media_type}/${item.id}`}
+                    >
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                        alt={item.title}
+                        className={scss.image}
+                      />
+                    </Link>
                   ) : (
-                    <div className={scss.non_img}> <img src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png" alt="" /> </div>
-                  )
-                )}
-                {item.media_type === "person" && (
-                  item.poster_path ? (
-                    <img
-                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    alt={item.title}
-                    className={scss.image}
-                  />
+                    <div className={scss.non_img}>
+                      {" "}
+                      <img
+                        src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
+                        alt=""
+                      />{" "}
+                    </div>
+                  ))}
+                {item.media_type === "person" &&
+                  (item.poster_path ? (
+                    <Link
+                      key={item.id}
+                      href={`/search/${item.media_type}/${item.id}`}
+                    >
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                        alt={item.title}
+                        className={scss.image}
+                      />
+                    </Link>
                   ) : (
-                    <div className={scss.non_img}> <img src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png" alt="" /> </div>
-                  )
-                )}
-              <div className={scss.result_text}>
-              <h3>{truncateText(item.media_type === "movie" ? item.title : item.name, 20)}</h3>
-                {item.release_date && (
-                  <p>{getFormattedDate(item.release_date)}</p> 
-                )}
-              </div>
+                    <div className={scss.non_img}>
+                      {" "}
+                      <img
+                        src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
+                        alt=""
+                      />{" "}
+                    </div>
+                  ))}
+                <div className={scss.result_text}>
+                  <h3>
+                    {truncateText(
+                      item.media_type === "movie" ? item.title : item.name,
+                      20
+                    )}
+                  </h3>
+                  {item.release_date && (
+                    <p>{getFormattedDate(item.release_date)}</p>
+                  )}
+                </div>
               </div>
             ))
           ) : (
@@ -86,7 +121,7 @@ const SearchResults = () => {
           )}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </section>
   );
 };

@@ -5,6 +5,14 @@ import scss from "./Popular.module.scss";
 import { useGetPopularQuery } from "@/redux/api/popular";
 import Link from "next/link";
 
+interface Popular {
+  id: number;
+  title: string;
+  backdrop_path: string;
+  poster_path: string;
+  release_date: string;
+}
+
 const Popular = () => {
   const { data } = useGetPopularQuery();
 
@@ -30,7 +38,7 @@ const Popular = () => {
         <div className={scss.content}>
           <h2>What's Popular</h2>
           <div className={scss.main_popular_list}>
-            {data?.results.slice(0, 5).map((item) => (
+            {data?.results.map((item: Popular) => (
               <div key={item.id} className={scss.popularCard}>
                 <Link href={`/popular/${item.id}`}>
                 <img

@@ -4,7 +4,13 @@ import React, { useState } from "react";
 import scss from "./Trending.module.scss";
 import Link from "next/link"; 
 import { useGetTrendingMoviesQuery } from "@/redux/api/trending";
-import SearchModal from "@/components/shared/SearchModal";
+
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+}
 
 const Trending = () => {
   const [timeWindow, setTimeWindow] = useState<"day" | "week">("day");
@@ -22,7 +28,7 @@ const Trending = () => {
     return date.toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
-      year: "numeric",
+      year: "numeric", 
     });
   };
 
@@ -59,7 +65,7 @@ const Trending = () => {
           </div>
 
           <div className={scss.main_movies_list}>
-            {data?.results.slice(0, 5).map((movie) => (
+            {data?.results.map((movie: Movie) => (
               <div key={movie.id} className={scss.movieCard}>
                 <Link href={`/movie/${movie.id}`}>
                   <img
