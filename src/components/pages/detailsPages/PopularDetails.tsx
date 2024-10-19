@@ -10,6 +10,9 @@ import { useGetVideosQuery } from "@/redux/api/videos";
 import { useGetSimilarMoviesQuery } from "@/redux/api/similar";
 import { useVideoModalStore } from "@/store/useVideoModalStore";
 import VideoModal from "@/components/ui/videoModal/VideoModal";
+import Link from "next/link";
+import { Progress, ProgressProps } from 'antd';
+
 
 interface Movie {
   id: number;
@@ -68,8 +71,16 @@ const PopularDetails = () => {
     return Math.round(num * 10) / 10;
   };
 
+  const conicColors: ProgressProps['strokeColor'] = {
+    '0%': '#87d068',
+    '50%': '#ffe58f',
+    '100%': '#ffccc7',
+  };
+
+
   return (
     <section className={scss.PopularDetails}>
+      {movieDetails?.backdrop_path && (<img className={scss.BgImage} src={`https://image.tmdb.org/t/p/w500${movieDetails?.backdrop_path}`} alt="bg_img" />)}
       <div className="container">
         <div className={scss.content}>
           <div className={scss.content_img}>
@@ -88,7 +99,7 @@ const PopularDetails = () => {
 
               <div className={scss.watched_block}>
                 <div className={scss.movie_rate}>
-                  <p>{roundToOneDecimal(movieDetails.vote_average)}</p>
+                <Progress size={80} format={(percent) => (<span style={{color: 'white'}}>{percent}</span>)} strokeWidth={10} strokeColor={conicColors}  strokeLinecap="butt" type="circle" percent={roundToOneDecimal(movieDetails.vote_average) * 10}  />
                 </div>
                 {videosData?.results.slice(0, 1).map((item) => (
                   <div key={item.id}>
@@ -107,10 +118,12 @@ const PopularDetails = () => {
 
               <h2>Overview</h2>
               <p>{movieDetails.overview}</p>
+              <div className={scss.tab}>
               <p>
                 Release Date:{" "}
                 <span>{getFormattedDate(movieDetails.release_date)}</span>
               </p>
+              </div>
             </div>
           </div>
         </div>
@@ -121,10 +134,16 @@ const PopularDetails = () => {
           <div className={scss.top_cast}>
             {creditsData.cast.map((actor: Actor) => (
               <div className={scss.top_cast_block} key={actor.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                  alt={actor.name}
-                />
+                {
+                  actor.profile_path ? (
+                    <img
+                    src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                    alt={actor.name}
+                  />
+                  ) : (
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg" alt="" />
+                  )
+                }
                 <div className={scss.cast_text}>
                   <p>{actor.name}</p>
                   <span>{actor.character}</span>
@@ -163,10 +182,18 @@ const PopularDetails = () => {
           <div className={scss.similar_content}>
             {similarData?.results.map((item) => (
               <div className={scss.similarCard} key={item.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                  alt={item.title}
-                />
+                <Link key={item.id} href={`/similarDetails/${item.id}`}>
+                {
+                  item.poster_path ? ( 
+                    <img
+                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                    alt={item.title}
+                  />
+                  ) : (
+                    <img src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png" alt="" />
+                  )
+                }
+                </Link>
                 <h3>{truncateText(item.title, 18)}</h3>
                 {item.release_date && (
                   <p>{getFormattedDate(item.release_date)}</p>

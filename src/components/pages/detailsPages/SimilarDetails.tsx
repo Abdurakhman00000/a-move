@@ -1,17 +1,18 @@
 "use client";
 
 import React from "react";
+import scss from "./SimilarDetails.module.scss";
 import { useParams } from "next/navigation";
-import scss from "./DisTvDetails.module.scss"
-import { useGetTvDetailsQuery } from "@/redux/api/details";
+import { useGetMovieDetailsQuery } from "@/redux/api/details";
 import { useGetCreditsQuery } from "@/redux/api/credits";
 import { useGetVideosQuery } from "@/redux/api/videos";
 import { useGetSimilarMoviesQuery } from "@/redux/api/similar";
 import { useVideoModalStore } from "@/store/useVideoModalStore";
-import { CiPlay1 } from "react-icons/ci";
 import VideoModal from "@/components/ui/videoModal/VideoModal";
+import { CiPlay1 } from "react-icons/ci";
 import Link from "next/link";
 import { Progress, ProgressProps } from 'antd';
+
 
 interface Actor {
   id: number;
@@ -20,20 +21,21 @@ interface Actor {
   character: string;
 }
 
-const DisTvDetails = () => {
+const SimilarDetails = () => {
   const { id } = useParams();
 
-  const { data: itemDetails } = useGetTvDetailsQuery(Number(id));
+  const { data: itemDetails } = useGetMovieDetailsQuery(Number(id));
 
   const {
-    data: tvDetails,
+    data: movieDetails,
     isLoading,
     error,
-  } = useGetTvDetailsQuery(Number(id));
+  } = useGetMovieDetailsQuery(Number(id));
 
   const { data: creditsData } = useGetCreditsQuery(itemDetails?.id! );
   const { data: videosData } = useGetVideosQuery(itemDetails?.id!);
   const { data: similarData } = useGetSimilarMoviesQuery(itemDetails?.id!);
+
 
   const openModal = useVideoModalStore((state) => state.openModal);
 
@@ -62,13 +64,12 @@ const DisTvDetails = () => {
     });
   };
 
-  // function formatDuration(minutes: number) {
-  //   const hours = Math.floor(minutes / 60);
-  //   const remainingMinutes = minutes % 60;
+  function formatDuration(minutes: number) {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
 
-  //   return `${hours}h ${remainingMinutes}m`;
-  // }
-
+    return `${hours}h ${remainingMinutes}m`;
+  }
 
   const conicColors: ProgressProps['strokeColor'] = {
     '0%': 'red',
@@ -76,12 +77,9 @@ const DisTvDetails = () => {
     '100%': 'green',
   };
 
-  if (isLoading) return <p>Loading TV show details...</p>;
-  if (error || !tvDetails) return <p>Error loading TV show details</p>;
-
   return (
-    <section className={scss.DisTVDetails}>
-      {itemDetails?.backdrop_path && (
+    <section className={scss.SimilarDetails}>
+        {itemDetails?.backdrop_path && (
         <img
           className={scss.BgImage}
           src={`https://image.tmdb.org/t/p/w500${itemDetails?.backdrop_path}`}
@@ -99,8 +97,8 @@ const DisTvDetails = () => {
           <div className={scss.content_text}>
             <div className="container_for_details">
               <h1>
-                {itemDetails?.name} ({" "}
-                {getYearFromDate(itemDetails?.first_air_date!)} )
+                {itemDetails?.title} ({" "}
+                {getYearFromDate(itemDetails?.release_date!)} )
               </h1>
               <h3>{itemDetails?.tagline}</h3>
 
@@ -146,8 +144,15 @@ const DisTvDetails = () => {
                     <p>
                       Release date:{" "}
                       <span>
-                        {getFormattedDate(itemDetails?.first_air_date!)}
+                        {getFormattedDate(itemDetails?.release_date!)}
                       </span>
+                    </p>
+                  </div>
+
+                  <div className={scss.tab_item}>
+                    <p>
+                      Runtime:{" "}
+                      <span>{formatDuration(itemDetails?.runtime!)}</span>
                     </p>
                   </div>
                 </div>
@@ -210,11 +215,11 @@ const DisTvDetails = () => {
         {/* SIMILAR MOVIE  */}
 
         <div className={scss.Main_similar}>
-          <h2>Similar TV shows</h2>
+          <h2>Similar Movies</h2>
           <div className={scss.similar_content}>
             {similarData?.results.map((item) => (
               <div className={scss.similarCard} key={item.id}>
-                 <Link key={item.id} href={`/similarDetails/${item.id}`}>
+                <Link key={item.id} href={`/similarDetails/${item.id}`}>
                 {
                   item.poster_path ? ( 
                     <img
@@ -230,16 +235,15 @@ const DisTvDetails = () => {
                 {item.release_date && (
                   <p>{getFormattedDate(item.release_date)}</p>
                 )}
-              </div>
+              </div> 
             ))}
           </div>
         </div>
 
-
-        <VideoModal/>
+        <VideoModal />
       </div>
     </section>
   );
 };
 
-export default DisTvDetails;
+export default SimilarDetails;

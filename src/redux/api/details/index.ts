@@ -19,12 +19,15 @@ const api = index.injectEndpoints({
             providesTags: ["tvDetails"]
             }),
 
-            getSearchItemDetails: builder.query<DETAILS.GetSearchDetailsResponse, { id: number; mediaType: string }>({
-                query: ({ id, mediaType }) => `/${mediaType}/${id}`, 
-                providesTags: ["searchDetails"],
-              }),
+            // getSearchItemDetails: builder.query<DETAILS.GetSearchDetailsResponse, { id: number; mediaType: string }>({
+            //     query: ({ id, mediaType }) => ({
+            //         url: `/${mediaType}/${id}`, 
+            //         method: "GET",
+            //     }) 
+            //     providesTags: ["searchDetails"],
+            //   }),
         }),
     })
 
 
-export const { useGetMovieDetailsQuery, useGetTvDetailsQuery, useGetSearchItemDetailsQuery } = api;
+export const { useGetMovieDetailsQuery, useGetTvDetailsQuery} = api;

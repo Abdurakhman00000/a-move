@@ -20,7 +20,7 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const {data: session} = useSession()
   const { openModal } = useAuthStore(); 
-  const { openModals } = useSearchModalStore(); 
+  const { openModals } = useSearchModalStore();  
 
 
 

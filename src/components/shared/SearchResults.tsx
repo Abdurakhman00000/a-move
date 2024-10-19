@@ -40,69 +40,28 @@ const SearchResults = () => {
           {data?.results?.length > 0 ? (
             data.results.map((item: any) => (
               <div key={item.id} className={scss.result_card}>
-                {item.media_type === "movie" &&
-                  (item.poster_path ? (
                     <Link
                       key={item.id}
-                      href={`/search/${item.media_type}/${item.id}`}
+                      href={`/searchDetails/${item.id}`}
                     >
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                        alt={item.title}
-                        className={scss.image}
-                      />
-                    </Link>
-                  ) : (
-                    <div className={scss.non_img}>
-                      {" "}
-                      <img
-                        src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
-                        alt=""
-                      />{" "}
-                    </div>
-                  ))}
-                {item.media_type === "tv" &&
-                  (item.poster_path ? (
-                    <Link
-                      key={item.id}
-                      href={`/search/${item.media_type}/${item.id}`}
-                    >
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                        alt={item.title}
-                        className={scss.image}
-                      />
-                    </Link>
-                  ) : (
-                    <div className={scss.non_img}>
-                      {" "}
-                      <img
-                        src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
-                        alt=""
-                      />{" "}
-                    </div>
-                  ))}
-                {item.media_type === "person" &&
-                  (item.poster_path ? (
-                    <Link
-                      key={item.id}
-                      href={`/search/${item.media_type}/${item.id}`}
-                    >
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                        alt={item.title}
-                        className={scss.image}
-                      />
-                    </Link>
-                  ) : (
-                    <div className={scss.non_img}>
-                      {" "}
-                      <img
-                        src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
-                        alt=""
-                      />{" "}
-                    </div>
-                  ))}
+                      {
+                        item.poster_path ? (
+                          <img
+                          src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                          alt={item.title}
+                          className={scss.image}
+                        />
+                        ) : (
+                          <div className={scss.non_img}>
+                          {" "}
+                          <img
+                            src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
+                            alt=""
+                          />{" "}
+                        </div>
+                        )
+                      }
+                    </Link> 
                 <div className={scss.result_text}>
                   <h3>
                     {truncateText(

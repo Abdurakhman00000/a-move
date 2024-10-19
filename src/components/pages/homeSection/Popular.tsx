@@ -41,10 +41,18 @@ const Popular = () => {
             {data?.results.map((item: Popular) => (
               <div key={item.id} className={scss.popularCard}>
                 <Link href={`/popular/${item.id}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
-                  alt=""
-                />
+                {item.backdrop_path ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
+                      alt={item.title}
+                      className={scss.poster}
+                    />
+                  ) : (
+                    <img
+                      src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
+                      alt=""
+                    />
+                  )}
                 <h3>{truncateText(item.title, 18)}</h3>
                 </Link>
                 {item.release_date && (

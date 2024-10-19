@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import scss from "./SearchModal.module.scss";
 import { useSearchModalStore } from "@/store/useSearchModalStore";
 
@@ -18,6 +18,12 @@ const SearchModal = () => {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <div
       className={isOpens ? `${scss.Search} ${scss.active}` : `${scss.Search}`}
@@ -27,6 +33,7 @@ const SearchModal = () => {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
           placeholder="Search for a movie or tv show..."
         />
         <div className={scss.buttons}>

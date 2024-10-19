@@ -1,5 +1,43 @@
 .TrandingDetails {
-    margin: 130px 0;
+    .BgImage {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        object-fit: cover;
+        object-position: center;
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.537); 
+        z-index: -1;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 950px;
+        background: linear-gradient(
+            180deg,
+            rgba(4, 21, 45, 0.596),
+            rgba(4, 21, 45, 0.775) 79.17%
+        );
+        z-index: -1; 
+    }
+    // margin: 130px 0;
+    margin-top: 130px;
+    margin-bottom: 50px;
     .content {
         display: flex;
         align-items: center;
@@ -62,14 +100,21 @@
                 font-weight: 400;
                 margin-bottom: 18px;
             }
-            p {
-                font-size: 17px;
-                margin-bottom: 60px;
-            }
+            
+            .tab {
+                margin-top: 40px;
+                p {
+                    font-size: 17px;
+                    margin-bottom: 60px;
+                    padding-bottom: 20px;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.407);
+                }
 
-            span {
-                color: rgba(255, 255, 255, 0.504);
-                padding-left: 10px;
+                span {
+                    color: rgba(255, 255, 255, 0.504);
+                    padding-left: 10px;
+                }
+    
             }
         }
     }

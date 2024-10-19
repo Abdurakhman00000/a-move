@@ -68,11 +68,18 @@ const Trending = () => {
             {data?.results.map((movie: Movie) => (
               <div key={movie.id} className={scss.movieCard}>
                 <Link href={`/movie/${movie.id}`}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                    className={scss.poster}
-                  />
+                  {movie.poster_path ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      alt={movie.title}
+                      className={scss.poster}
+                    />
+                  ) : (
+                    <img
+                      src="https://ecomovie.life/assets/no-poster-4xa9LmsT.png"
+                      alt=""
+                    />
+                  )}
                   <h3>{truncateText(movie.title, 18)}</h3>
                 </Link>
                 {movie.release_date && (

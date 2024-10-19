@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import scss from "./SearchByKeyword.module.scss"
 
 const SearchInput = () => {
@@ -12,12 +12,19 @@ const SearchInput = () => {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <div className={scss.Search}>
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="Search for a movie or tv show..."
       />
       <button onClick={handleSearch}>Search</button>

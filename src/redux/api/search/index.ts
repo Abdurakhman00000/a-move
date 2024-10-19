@@ -4,7 +4,7 @@ const api = index.injectEndpoints({
     endpoints: (builder) => ({
         searchKeyWords: builder.query<any, string>({
             query: (query) => ({
-                url: `/search/multi`,
+                url: `/search/movie`,
                 method: "GET",
                 params: {
                     query,
