@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation"; // Импортируйте useParams
 import scss from "./DisMoviesDetails.module.scss";
 import { useGetMovieDetailsQuery } from "@/redux/api/details";
@@ -12,6 +12,7 @@ import { useGetCreditsQuery } from "@/redux/api/credits";
 import { useGetSimilarMoviesQuery } from "@/redux/api/similar";
 import Link from "next/link";
 import { Progress, ProgressProps } from 'antd';
+import Loader from "@/components/ui/loader/Loader";
 
 interface Actor {
   id: number;
@@ -24,11 +25,9 @@ const DisMoviesDetails = () => {
   const { id } = useParams();
 
   const { data: itemDetails } = useGetMovieDetailsQuery(Number(id));
-
+  
   const {
     data: movieDetails,
-    isLoading,
-    error,
   } = useGetMovieDetailsQuery(Number(id));
 
   const { data: creditsData } = useGetCreditsQuery(itemDetails?.id! );
@@ -75,8 +74,29 @@ const DisMoviesDetails = () => {
     '100%': 'green',
   };
 
-  if (isLoading) return <p>Loading movie details...</p>;
-  if (error || !movieDetails) return <p>Error loading movie details</p>;
+  const [isLoadinger, setIsLoadinger] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadinger(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoadinger) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
 
   return (
     <section className={scss.DisMoviesDetails}>
@@ -223,6 +243,7 @@ const DisMoviesDetails = () => {
                 {
                   item.poster_path ? ( 
                     <img
+                    onClick={scrollToTop}
                     src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     alt={item.title}
                   />

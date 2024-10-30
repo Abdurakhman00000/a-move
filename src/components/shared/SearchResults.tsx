@@ -6,6 +6,8 @@ import { useSearchKeyWordsQuery } from "@/redux/api/search";
 import Header from "../layout/header/Header";
 import Footer from "../layout/footer/Footer";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import Loader from "../ui/loader/Loader";
 
 const SearchResults = () => {
   const params = useParams();
@@ -30,6 +32,23 @@ const SearchResults = () => {
       year: "numeric",
     });
   };
+
+  const [isLoadinger, setIsLoadinger] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadinger(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoadinger) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  }
 
   return (
     <section className={scss.SearchResults}>

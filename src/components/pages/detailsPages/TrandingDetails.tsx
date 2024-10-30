@@ -72,6 +72,13 @@ const TrandingDetails = () => {
     '100%': '#ffccc7',
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
+
   return (
     <section className={scss.TrandingDetails}>
       {movieDetails?.backdrop_path && (
@@ -190,6 +197,7 @@ const TrandingDetails = () => {
                 <Link key={item.id} href={`/similarDetails/${item.id}`}>
                   {item.poster_path ? (
                     <img
+                    onClick={scrollToTop}
                       src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                       alt={item.title}
                     />

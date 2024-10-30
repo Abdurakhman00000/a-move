@@ -71,6 +71,13 @@ const TopRatedDetails = () => {
     '100%': 'green',
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
+
 
   return (
     <section className={scss.TopRatedDetails}>
@@ -167,6 +174,7 @@ const TopRatedDetails = () => {
                 {
                   similarMovie.poster_path ? ( 
                     <img
+                    onClick={scrollToTop}
                     src={`https://image.tmdb.org/t/p/w500${similarMovie.poster_path}`}
                     alt={similarMovie.title}
                   />

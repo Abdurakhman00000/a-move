@@ -32,6 +32,13 @@ const Popular = () => {
     });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className={scss.Popular}>
       <div className="container">
@@ -41,8 +48,9 @@ const Popular = () => {
             {data?.results.map((item: Popular) => (
               <div key={item.id} className={scss.popularCard}>
                 <Link href={`/popular/${item.id}`}>
-                {item.backdrop_path ? (
+                  {item.backdrop_path ? (
                     <img
+                      onClick={scrollToTop}
                       src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                       alt={item.title}
                       className={scss.poster}
@@ -53,7 +61,7 @@ const Popular = () => {
                       alt=""
                     />
                   )}
-                <h3>{truncateText(item.title, 18)}</h3>
+                  <h3>{truncateText(item.title, 18)}</h3>
                 </Link>
                 {item.release_date && (
                   <p>{getFormattedDate(item.release_date)}</p>

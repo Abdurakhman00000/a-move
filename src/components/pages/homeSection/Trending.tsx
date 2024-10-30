@@ -32,6 +32,13 @@ const Trending = () => {
     });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className={scss.Trending}>
       <div className="container">
@@ -70,6 +77,7 @@ const Trending = () => {
                 <Link href={`/movie/${movie.id}`}>
                   {movie.poster_path ? (
                     <img
+                      onClick={scrollToTop}
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       alt={movie.title}
                       className={scss.poster}

@@ -26,6 +26,8 @@ const Welcome = () => {
     }
   }, [data]);
 
+  
+
   return (
     <section className={scss.Welcome}>
       {bgImageUrl && (<img className={scss.BgImage} src={bgImageUrl} alt="bg_img" />)}

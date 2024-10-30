@@ -7,6 +7,6 @@ export const links = [
     {
         name: "TV shows",
         links: "/explore/tv",
-        href: ""
+        href: "http://localhost:3000/explore/tv"
     }
 ]

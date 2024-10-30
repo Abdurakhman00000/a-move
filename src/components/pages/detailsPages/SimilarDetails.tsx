@@ -77,6 +77,13 @@ const SimilarDetails = () => {
     '100%': 'green',
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
+
   return (
     <section className={scss.SimilarDetails}>
         {itemDetails?.backdrop_path && (
@@ -222,7 +229,7 @@ const SimilarDetails = () => {
                 <Link key={item.id} href={`/similarDetails/${item.id}`}>
                 {
                   item.poster_path ? ( 
-                    <img
+                    <img onClick={scrollToTop}
                     src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     alt={item.title}
                   />

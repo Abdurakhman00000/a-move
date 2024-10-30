@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import scss from "./PopularDetails.module.scss";
 import { CiPlay1 } from "react-icons/ci";
@@ -12,6 +12,7 @@ import { useVideoModalStore } from "@/store/useVideoModalStore";
 import VideoModal from "@/components/ui/videoModal/VideoModal";
 import Link from "next/link";
 import { Progress, ProgressProps } from 'antd';
+import Loader from "@/components/ui/loader/Loader";
 
 
 interface Movie {
@@ -32,6 +33,8 @@ interface Actor {
 
 const PopularDetails = () => {
   const { id } = useParams();
+
+  
 
   const { data: popularData } = useGetPopularQuery();
   const movieDetails = popularData?.results.find(
@@ -76,6 +79,31 @@ const PopularDetails = () => {
     '50%': '#ffe58f',
     '100%': '#ffccc7',
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
+
+
+  // const [isLoadinger, setIsLoadinger] = useState(true);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoadinger(false);
+  //   }, 2000);
+
+  //   return () => clearTimeout(timer);
+  // }, []);
+
+  // if (isLoadinger) {
+  //   return (
+  //     <>
+  //       <Loader />
+  //     </>
+  //   );
+  // }
 
 
   return (
@@ -185,7 +213,7 @@ const PopularDetails = () => {
                 <Link key={item.id} href={`/similarDetails/${item.id}`}>
                 {
                   item.poster_path ? ( 
-                    <img
+                    <img onClick={scrollToTop}
                     src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     alt={item.title}
                   />

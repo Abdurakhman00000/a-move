@@ -1,10 +1,11 @@
 // components/DisMovies.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import scss from "./DisMovies.module.scss";
 import Link from "next/link";
 import { useGetDiscoverMoviesQuery } from "@/redux/api/discoverMovies";
+import Loader from "@/components/ui/loader/Loader";
 
 
 
@@ -33,6 +34,30 @@ const DisMovies = () => {
     });
   };
 
+  const [isLoadinger, setIsLoadinger] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadinger(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoadinger) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
+
   return (
     <section className={scss.DisMovies}>
       <div className="container">
@@ -44,6 +69,7 @@ const DisMovies = () => {
                 <div className={scss.disMoviesCard}>
                   {item.backdrop_path ? (
                     <img
+                    onClick={scrollToTop}
                       src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                       alt=""
                     />

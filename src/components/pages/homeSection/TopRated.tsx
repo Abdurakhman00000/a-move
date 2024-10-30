@@ -32,6 +32,13 @@ const TopRated = () => {
     });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
+
   return (
     <section className={scss.TopRated}>
       <div className="container">
@@ -43,6 +50,7 @@ const TopRated = () => {
                 <Link href={`/topRated/${item.id}`}>
                 {item.backdrop_path ? (
                     <img
+                    onClick={scrollToTop}
                       src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                       alt={item.title}
                       className={scss.poster}

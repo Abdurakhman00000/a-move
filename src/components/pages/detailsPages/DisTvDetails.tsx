@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import scss from "./DisTvDetails.module.scss"
 import { useGetTvDetailsQuery } from "@/redux/api/details";
@@ -12,6 +12,7 @@ import { CiPlay1 } from "react-icons/ci";
 import VideoModal from "@/components/ui/videoModal/VideoModal";
 import Link from "next/link";
 import { Progress, ProgressProps } from 'antd';
+import Loader from "@/components/ui/loader/Loader";
 
 interface Actor {
   id: number;
@@ -27,8 +28,6 @@ const DisTvDetails = () => {
 
   const {
     data: tvDetails,
-    isLoading,
-    error,
   } = useGetTvDetailsQuery(Number(id));
 
   const { data: creditsData } = useGetCreditsQuery(itemDetails?.id! );
@@ -76,8 +75,32 @@ const DisTvDetails = () => {
     '100%': 'green',
   };
 
-  if (isLoading) return <p>Loading TV show details...</p>;
-  if (error || !tvDetails) return <p>Error loading TV show details</p>;
+ 
+
+
+  const [isLoadinger, setIsLoadinger] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadinger(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoadinger) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
 
   return (
     <section className={scss.DisTVDetails}>
@@ -218,6 +241,7 @@ const DisTvDetails = () => {
                 {
                   item.poster_path ? ( 
                     <img
+                    onClick={scrollToTop}
                     src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     alt={item.title}
                   />

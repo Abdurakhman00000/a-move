@@ -8,7 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 
 const BurgerMenu = () => {
-  const { isOpen } = useHeaderStore();
+  const { isOpen, closeMenu } = useHeaderStore();
   const { data: session } = useSession();
 
   return (
@@ -22,7 +22,7 @@ const BurgerMenu = () => {
           <ul>
             {links.map((item, index) => (
               <li key={index}>
-                <Link href={item.href}>{item.name}</Link>
+                <Link onClick={closeMenu} href={item.href}>{item.name}</Link>
               </li>
             ))}
           </ul>
