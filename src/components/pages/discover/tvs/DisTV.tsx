@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import styles from "./DisTV.module.scss"; // Импортируйте SCSS-модуль
+import styles from "./DisTV.module.scss";
 import { useGetDiscoverTVQuery } from "@/redux/api/discoverTV";
 import Link from "next/link";
 import Loader from "@/components/ui/loader/Loader";
@@ -14,12 +14,6 @@ interface TVShow {
 
 const DisTV = () => {
   const { data } = useGetDiscoverTVQuery();
-
-  const truncateText = (text: string, maxLength: number) => {
-    if (!text) return "";
-    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
-  };
-
   const [isLoadinger, setIsLoadinger] = useState(true);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -65,7 +59,6 @@ const DisTV = () => {
                       alt=""
                     />
                   )}
-                  {/* <h3>{truncateText(item.name, 18)}</h3> */} {/* закомментировано */}
                 </div>
               </Link>
             ))}
