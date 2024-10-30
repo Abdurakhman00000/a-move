@@ -31,11 +31,10 @@
   }
 }
 
-/* Новый класс для iframe */
 .videoFrame {
-  width: 100%; /* Делает iframe адаптивным */
+  width: 100%; 
   height: auto;
-  aspect-ratio: 16/9; /* Соотношение сторон 16:9 */
+  aspect-ratio: 16/9; 
 
   @media (max-width: 768px) {
     height: 200px;

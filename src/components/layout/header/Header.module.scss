@@ -30,7 +30,8 @@
 
                 h1 {
                     background: linear-gradient(116.11deg, rgb(181, 9, 189) 0.99%, rgb(218, 47, 104) 100%);
-                    -webkit-background-clip: text;
+                    -webkit-background-clip: text; 
+                    background-clip: text; 
                     color: transparent;
                     font-family: "Permanent Marker", cursive;
                 }
@@ -118,13 +119,6 @@
         .content {
             padding-right: 15px;
             .right {
-                .nav {
-                    ul {
-                        svg {
-                            // margin-top: 10px;
-                        }
-                    }
-                }
                 .auth {
                     display: none;
                 }
