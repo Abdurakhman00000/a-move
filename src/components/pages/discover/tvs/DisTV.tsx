@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "./DisTV.css";
+import styles from "./DisTV.module.scss"; // Импортируйте SCSS-модуль
 import { useGetDiscoverTVQuery } from "@/redux/api/discoverTV";
 import Link from "next/link";
 import Loader from "@/components/ui/loader/Loader";
@@ -45,14 +45,14 @@ const DisTV = () => {
   };
 
   return (
-    <section className="DisTvs">
+    <section className={styles.DisTvs}>
       <div className="container">
-        <div className="content">
+        <div className={styles.content}>
           <h2>Explore movies</h2>
-          <div className="main_disTV_list">
+          <div className={styles.main_disTV_list}>
             {data?.results.map((item: TVShow) => (
               <Link key={item.id} href={`/exTv/${item.id}`}>
-                <div key={item.id} className="disTVCard">
+                <div className={styles.disTVCard}>
                   {item.backdrop_path ? (
                     <img
                       onClick={scrollToTop}
@@ -65,7 +65,7 @@ const DisTV = () => {
                       alt=""
                     />
                   )}
-                  {/* <h3>{truncateText(item.name, 18)}</h3> */}
+                  {/* <h3>{truncateText(item.name, 18)}</h3> */} {/* закомментировано */}
                 </div>
               </Link>
             ))}
