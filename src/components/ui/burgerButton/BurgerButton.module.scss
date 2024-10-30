@@ -1,5 +1,6 @@
 .BurgerButton {
     position: relative;
+
     .content {
      position: absolute;
      right: -20px;
@@ -7,13 +8,14 @@
      margin-top: 3px;
      transform: translateY(-49%) scale(1.7);
     }
+
     .ham {
      cursor: pointer;
      -webkit-tap-highlight-color: transparent;
      transition: transform 400ms;
-     -moz-user-select: none;
-     -webkit-user-select: none;
-     -ms-user-select: none;
+     user-select: none;
+     user-select: none;
+     user-select: none;
      user-select: none;
    
      .line {
@@ -24,30 +26,37 @@
       stroke-linecap: round;
      }
     }
+
     .hamRotate.active {
      transform: rotate(45deg);
     }
+
     .ham8 {
      .top {
       stroke-dasharray: 40 160;
      }
+
      .middle {
       stroke-dasharray: 40 142;
       transform-origin: 50%;
       transition: transform 400ms;
      }
+
      .bottom {
       stroke-dasharray: 40 85;
       transform-origin: 50%;
       transition: transform 400ms, stroke-dashoffset 400ms;
      }
+
      &.active {
       .top {
        stroke-dashoffset: -64px;
       }
+
       .middle {
        transform: rotate(90deg);
       }
+
       .bottom {
        stroke-dashoffset: -64px;
       }

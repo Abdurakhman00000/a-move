@@ -9,11 +9,13 @@
     transition: 0.5s;
     background-color: white;
     backdrop-filter: blur(4px);
-    border-top: 1px solid rgba(255, 255, 255, 0.374);
+    border-top: 1px solid rgb(255 255 255 / 37.4%);
+
     &.active {
         visibility: visible;
         opacity: 1;
     }
+
     .content {
         padding: 4px 0;
         width: 100%;
@@ -28,7 +30,7 @@
             border: none;
             outline: none;
             background-color: transparent;
-            color: rgba(0, 0, 0, 0.623);
+            color: rgb(0 0 0 / 62.3%);
         }
 
         .buttons {
@@ -40,7 +42,7 @@
 }
 
 
-@media(max-width:768px) {
+@media(width <=768px) {
    .Search {
     .content {
         display: flex;
@@ -57,7 +59,7 @@
 }
 
 
-@media(max-width:350px) {
+@media(width <=350px) {
     .Search {
      .content {
         padding: 4px 20px;

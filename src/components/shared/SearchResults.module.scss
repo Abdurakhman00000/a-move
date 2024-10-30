@@ -1,5 +1,6 @@
 .SearchResults {
     margin-top: 100px;
+
     .results {
         display: flex;
         align-items: center;
@@ -11,6 +12,7 @@
             margin: 20px 0;
             margin-bottom: 100px;
             cursor: pointer;
+
             img {
                 width: 216px;
                 height: 324px;
@@ -37,7 +39,7 @@
     }
 }
 
-@media(max-width:768px) {
+@media (width <= 768px) {
     .SearchResults {
         .results {
             flex-wrap: nowrap;

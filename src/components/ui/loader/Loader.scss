@@ -5,18 +5,16 @@ $color: white;
 
 .holder {
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(4, 21, 45);
+  background-color: rgb(4 21 45);
 }
 
 .preloader {
   width: #{$size}px;  
   height: #{$size}px; 
+
   position: absolute;
   left: 50%;
   top: 50%;
@@ -28,6 +26,7 @@ $color: white;
   0% {
     transform: translateX(-50%) translateY(-50%) rotateZ(0deg);
   }
+
   100% {
     transform: translateX(-50%) translateY(-50%) rotateZ(-360deg);
   }
@@ -40,7 +39,7 @@ $color: white;
   opacity: 0;
 }
 
-.preloader div:before {
+.preloader div::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -55,27 +54,40 @@ $color: white;
 @for $i from 1 through $count {
   .preloader div:nth-child(#{$i}) {
     transform: rotateZ(#{$i * (360 / $count)}deg); // Исправлено
-    animation: rotateCircle#{$i} #{$time}s infinite linear; // Интерполяция добавлена
-    z-index: $count - $i;
+    animation: rotateCircle#{$i} #{$time}
+
+s infinite linear; // Интерполяция добавлена
+    z-index: $count - $i;z-index
   }
 
-  @keyframes rotateCircle#{$i} {
-    #{percentage(((50 / $count) * ($i - 1)) / 100)} {
+  @keyframes rotateCircle#{$i}
+
+ {
+    #{percentage(((50 / $count) * ($i - 1)) / 100)}
+
+ {
       opacity: 0;
     }
-    #{percentage((((50 / $count) + 0.0001) * ($i - 1)) / 100)} {
+    #{percentage((((50 / $count) + 0.0001) * ($i - 1)) / 100)}
+
+ {
       opacity: 1;
       transform: rotateZ(-(360 / $count) * ($i - 2) + deg); // Исправлено
     }
-    #{percentage((((50 / $count) * ($i - 0)) + 2) / 100)} {
+    #{percentage((((50 / $count) * ($i - 0)) + 2) / 100)}
+
+ {
       transform: rotateZ(-(360 / $count) * ($i - 1) + deg); // Исправлено
     }
-    #{percentage(((50 + ((50 / $count) * ($i - 0))) + 2) / 100)} {
+    #{percentage(((50 + ((50 / $count) * ($i - 0))) + 2) / 100)}
+
+ {
       transform: rotateZ(-(360 / $count) * ($i - 1) + deg); // Исправлено
     }
+
     100% {
       transform: rotateZ(-(360 / $count) * ($count - 1) + deg); // Исправлено
-      opacity: 1;
+      opacity: 1;opacity
     }
   }
 }

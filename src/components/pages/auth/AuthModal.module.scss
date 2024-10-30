@@ -4,23 +4,22 @@
   right: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.558);
+  background: rgb(0 0 0 / 55.8%);
   display: flex;
   justify-content: flex-end; 
   align-items: flex-start;   
 }
 
 .modalContent {
-  background: rgb(4, 21, 45);
+  background: rgb(4 21 45);
   padding: 20px;
   border-radius: 10px;
   position: relative;
   width: 400px; 
   margin: 20px; 
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 
   .userInfo {
-
     button {
       width: 150px;
       height: 30px;
@@ -34,6 +33,7 @@
       margin-top: 20px;
     }
   }
+
   .Login {
     display: flex;
     align-items: center;
@@ -49,11 +49,11 @@
       svg {
         width: 40px;
         height: 40px;
-        color: rgb(218, 47, 104);
+        color: rgb(218 47 104);
     }
 
     h2 {
-        color: rgb(218, 47, 104);
+        color: rgb(218 47 104);
         font-family: "Permanent Marker", cursive;
         margin-top: 20px;
     }

@@ -6,7 +6,7 @@
     padding: 9px 0;
     z-index: 999;
     backdrop-filter: blur(3px); 
-    background: rgba(17, 17, 17, 0.188); 
+    background: rgb(17 17 17 / 18.8%); 
 
     .content {
         position: relative;
@@ -23,14 +23,14 @@
                 img {
                     width: 40px;
                     height: 40px;
-                    // color: #da2f68;
+                    // color: #da2f68;color
                     border-radius: 50%;
                     object-fit: cover;
                 }
 
                 h1 {
-                    background: linear-gradient(116.11deg, rgb(181, 9, 189) 0.99%, rgb(218, 47, 104) 100%);
-                    -webkit-background-clip: text; 
+                    background: linear-gradient(116.11deg, rgb(181 9 189) 0.99%, rgb(218 47 104) 100%);
+                    background-clip: text; 
                     background-clip: text; 
                     color: transparent;
                     font-family: "Permanent Marker", cursive;
@@ -89,6 +89,7 @@
 
             .auth {
                 display: block;
+
                 .trueAuth {
                     img {
                         width: 30px;
@@ -114,10 +115,11 @@
 }
 
 
-@media(max-width:768px) {
+@media(width <=768px) {
     .Header {
         .content {
             padding-right: 15px;
+
             .right {
                 .auth {
                     display: none;

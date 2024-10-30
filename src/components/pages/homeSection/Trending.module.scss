@@ -48,7 +48,7 @@
             left: 3px;
             width: 97px;
             height: 28px;
-            background: linear-gradient(116.11deg, rgb(181, 9, 189) 0.99%,rgb(218, 47, 104) 100%);
+            background: linear-gradient(116.11deg, rgb(181 9 189) 0.99%,rgb(218 47 104) 100%);
             border-radius: 20px;
             transition: transform 0.3s ease;
           }
@@ -62,12 +62,14 @@
             padding: 30px 0;
             gap: 20px;
             overflow-y: auto;
+
             &::-webkit-scrollbar {
               display: none;
             }
 
             .movieCard {
                 cursor: pointer;
+
                 img {
                     width: 216px;
                     height: 324px;
@@ -83,22 +85,23 @@
                 p {
                     font-size: 14px;
                     font-weight: 500;
-                    color: rgba(255, 255, 255, 0.526);
+                    color: rgb(255 255 255 / 52.6%);
                     margin-top: 5px;
                 }
             }
         }
     
 
-        @media(max-width: 900px) {
+        @media(width <= 900px) {
           .Trending {
             margin-top: -250px;
           }
         }
 
-        @media(max-width: 350px) {
+        @media(width <= 350px) {
           .Trending {
             margin-top: -300px;
+
             .content {
               .trending_header {
                 h2 {

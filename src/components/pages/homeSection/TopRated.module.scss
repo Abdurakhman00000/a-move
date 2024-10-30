@@ -2,6 +2,7 @@
     .content {
         margin-top: 30px;
         margin-bottom: 50px;
+
         h2 {
             font-size: 24px;
             font-weight: 400;
@@ -15,12 +16,14 @@
             padding: 30px 0;
             gap: 20px;
             overflow-y: auto;
+
             &::-webkit-scrollbar {
               display: none;
             }
 
             .topRatedCard {
                 cursor: pointer;
+
                 img {
                     width: 216px;
                     height: 324px;
@@ -37,7 +40,7 @@
                 p {
                     font-size: 14px;
                     font-weight: 500;
-                    color: rgba(255, 255, 255, 0.526);
+                    color: rgb(255 255 255 / 52.6%);
                     margin-top: 5px;
                 }
             }
@@ -47,7 +50,7 @@
     }
 }
 
-@media(max-width: 900px) {
+@media(width <= 900px) {
     .TopRated {
       .content {
         .main_topRated_list {
